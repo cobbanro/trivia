@@ -1,18 +1,33 @@
 <template>
-  <div id="app">
+  <!-- <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  </div> -->
+<div class="">
+
+  <h1>Trivia</h1>
+  <Questions></Questions>
+
+</div>
+
+
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Questions from './components/Questions.vue'
 
 export default {
   name: 'app',
-  components: {
-    HelloWorld
-  }
+  data(){
+    return{
+      trivia: []
+    }
+  },
+  mounted(){
+    fetch('https://opentdb.com/api.php?amount=10')
+    .then(res => res.json())
+    .then(trivia => this.trivia = trivia)},
+
 }
 </script>
 
